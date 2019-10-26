@@ -1,5 +1,8 @@
 <template>
-  <v-card class="overflow-hidden">
+  <v-card
+    class="overflow-hidden"
+    tile
+  >
     <v-app-bar
       color="#fcb69f"
       dark
@@ -13,7 +16,7 @@
         </v-img>
       </template>
 
-      <v-toolbar-title id="toolbar-title">revue</v-toolbar-title>
+      <v-toolbar-title class="display-2">revue</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -33,15 +36,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component({})
 export default class Topbar extends Vue {}
 </script>
 
-<style scoped>
-  #toolbar-title {
-    font-size: 2.25rem;
-    padding-left: 1rem;
-  }
+<style>
 </style>

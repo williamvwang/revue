@@ -1,0 +1,26 @@
+
+title: Two Sum
+tags:
+- easy
+- math
+description: >-
+  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+example: |
+  Given nums = [2, 7, 11, 15] and target = 9,
+
+  Because nums[0] + nums[1] = 2 + 7 = 9,
+  return [0, 1].
+explanation: |
+  Coming soon
+solution: |
+  ```python
+  class Solution:
+      def twoSum(self, nums: List[int], target: int) -> List[int]:
+          value_to_idx = {}
+          for i in range(len(nums)):
+              if target - nums[i] in value_to_idx:
+                  return [value_to_idx[target - nums[i]], i]
+              value_to_idx[nums[i]] = i
+          return
+  ```
+  

@@ -1,25 +1,20 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="40%"
     tile
-    id="question-card"
   >
     <v-list
       flat
       three-line
     >
-      <v-list-item-group v-model="question" color="primary">
+      <v-list-item-group v-model="selection" color="primary">
         <v-list-item
           v-for="(question, i) in questions"
           :key="i"
         >
           <v-list-item-content>
             <v-list-item-title v-text="question.title"></v-list-item-title>
-            <v-chip-group
-              column
-              active-class="primary--text"
-            >
+            <v-chip-group column>
               <v-chip v-for="tag in question.tags" :key="tag">
                 {{ tag }}
               </v-chip>
@@ -32,25 +27,30 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import {
+  Component, Prop, Vue, Watch,
+} from 'vue-property-decorator';
 import { Question } from '../models/Question';
 
-const AppProps = Vue.extend({
+@Component({
   props: {
     questions: {
       type: Array as () => Array<Question>,
     },
   },
-});
+})
 
-@Component
-export default class QuestionList extends AppProps {
-  private question: Question;
+export default class QuestionList extends Vue {
+  private questions!: Question[];
+
+  selection = null;
+
+  @Watch('selection')
+  onSelectionChanged(val: number, oldVal: number) {
+    console.log(this.questions[val]);
+  }
 }
 </script>
 
-<style scoped>
-  #question-card {
-    margin-top: 5rem;
-  }
+<style>
 </style>
