@@ -3,10 +3,25 @@
     <v-container class="mt-12">
       <v-row>
         <v-col cols="3">
+          <v-card class="mx-auto mb-6" tile>
+            <v-card-title class="pb-0">Filter</v-card-title>
+            <v-card-actions class="pa-4">
+              <v-chip-group
+                column
+                multiple
+                active-class="primary--text"
+                v-model="tagSelections"
+              >
+                <v-chip filter v-for="tag in tags" :key="tag" :value="tag">
+                  {{ tag }}
+                </v-chip>
+              </v-chip-group>
+            </v-card-actions>
+          </v-card>
           <v-card class="mx-auto" tile>
             <v-list flat two-line>
-              <v-list-item-group v-model="selection" color="primary">
-                <v-list-item v-for="(question, i) in questions" :key="i">
+              <v-list-item-group v-model="question" color="primary">
+                <v-list-item v-for="(question, i) in filteredQuestions" :key="i" :value="question">
                   <v-list-item-content>
                     <v-list-item-title v-text="question.title"></v-list-item-title>
                     <v-chip-group column>
@@ -19,7 +34,6 @@
               </v-list-item-group>
             </v-list>
           </v-card>
-          <!-- <QuestionList v-bind:questions="questions"/> -->
         </v-col>
         <v-col cols="9">
           <QuestionDetail v-bind:question="question"/>
@@ -46,21 +60,39 @@ import QuestionDetail from './QuestionDetail.vue';
 export default class Frame extends Vue {
   private questions!: Question[];
 
-  selection = null;
+  private tags = new Set<string>();
 
-  question: Question | null = null;
+  private tagSelections: string[] = [];
 
-  @Watch('selection')
-  onSelectionChanged(val: number, oldVal: number) {
-    this.question = this.questions[val];
+  private questionSelection: number | null = null;
+
+  private question: Question | null = null;
+
+  get filteredQuestions() {
+    if (this.tagSelections.length === 0) {
+      return this.questions;
+    }
+    return this.questions
+      .filter(question => this.tagSelections
+        .every(tag => question.tags
+          .map(t => t.toLowerCase())
+          .includes(tag)));
   }
 
   private created() {
     const context = require.context('../../questions/', false, /\.yaml$/);
     this.questions = context.keys().map(key => context(key));
+    this.questions.forEach((question) => {
+      question.tags.forEach((tag) => {
+        this.tags.add(tag.toLowerCase());
+      });
+    });
   }
 }
 </script>
 
-<style scoped>
+<style>
+  .v-chip .v-icon {
+    font-size: 14px;
+  }
 </style>

@@ -15,21 +15,10 @@
           gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)">
         </v-img>
       </template>
-
       <v-toolbar-title class="display-2">revue</v-toolbar-title>
-
       <v-spacer></v-spacer>
-
       <v-btn icon>
-        <v-icon>fas fa-search</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>fas fa-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>fas fa-ellipsis-v</v-icon>
+        <v-icon>fab fa-github</v-icon>
       </v-btn>
     </v-app-bar>
   </v-card>
