@@ -22,7 +22,9 @@
       </v-card-text>
 
       <v-card-subtitle class="pb-1">Explanation</v-card-subtitle>
-      <v-card-text class="text--primary">{{ question.explanation }}</v-card-text>
+      <v-card-text class="text--primary pb-0">
+        <div v-if="question.solution" v-html="renderMarkdown(question.explanation)"/>
+      </v-card-text>
 
       <v-card-subtitle class="pb-1">Solution</v-card-subtitle>
       <v-card-text class="text--primary">
@@ -84,7 +86,7 @@ export default class QuestionDetails extends Vue {
     font-weight: 400 !important;
   }
 
-  .v-application code:before, .v-application code:after {
+  .hljs > code:before, .hljs code:after {
     content: none !important;
   }
 

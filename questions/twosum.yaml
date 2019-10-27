@@ -3,6 +3,7 @@ title: Two Sum
 tags:
 - easy
 - math
+- memoization
 description: >-
   Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 example: |
@@ -11,7 +12,14 @@ example: |
   Because nums[0] + nums[1] = 2 + 7 = 9,
   return [0, 1].
 explanation: |
-  Coming soon
+  The simple intuition here is that for any number we come across, there is exactly one number we can add to it to reach the target sum.
+
+  In other words, once we see a number `x`, we know that its complement with the target sum must be `target - x`. Therefore, if we come 
+  across another number with value `target - x`, we have found a pair that adds up to our target sum.
+
+  To meet the requirement of returning the indices of this pair, we can maintain a mapping of number to index of occurrence.
+  Loop over the array by index -- each time we see a number, check to see if the mapping contains a key whose value is the difference 
+  between the target sum and that number. If so, return the index mapped to by that key and the current index.
 solution: |
   ```python
   class Solution:

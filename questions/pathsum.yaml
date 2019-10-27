@@ -16,8 +16,17 @@ example: |
      /  \      \
     7    2      1
   return true, as there exists a root-to-leaf path 5->4->11->2 whose sum is 22.
-explanation: >-
-  Coming soon
+explanation: |
+  Classic example of recursion on a BST. Given the example tree rooted at 5, asking if there is a root-to-leaf path with value sum 22 
+  is equivalent to asking if there is a root-to-leaf path with value sum 17 (22 - 5, the value of the root) for either of the left or right 
+  subtrees of the root.
+
+  This intuition can guide us in enumerating our base and recursive cases.
+  - **Base cases**:
+    1. If root is null, we cannot satisfy any path sum. 
+    2. If root is a leaf, we trivially satisfy a path sum if the target sum equals the value of the root.
+  - **Recursive case**:
+    - Does either of our left or right subtrees have a path sum of the target sum minus the value of the root?
 solution: |
   ```python
   # Definition for a binary tree node.

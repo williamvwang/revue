@@ -72,14 +72,17 @@ export default class Frame extends Vue {
     }
     return this.questions
       .filter(question => this.tagSelections
-        .every(tag => question.tags
-          .map(t => t.toLowerCase())
-          .includes(tag)));
+        .every(tag => question.tags.includes(tag)));
   }
 
   private created() {
     const context = require.context('../../questions/', false, /\.yaml$/);
-    this.questions = context.keys().map(key => context(key));
+    this.questions = context.keys()
+      .map((key) => {
+        const question: Question = context(key);
+        question.tags = question.tags.map(tag => tag.toLowerCase());
+        return question;
+      });
     this.questions.forEach((question) => {
       question.tags.forEach((tag) => {
         this.tags.add(tag.toLowerCase());
