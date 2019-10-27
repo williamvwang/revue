@@ -7,7 +7,9 @@
       <v-card-subtitle class="pb-0">Tags</v-card-subtitle>
       <v-card-text class="pb-0">
         <v-chip-group column>
-          <v-chip v-for="tag in question.tags" :key="tag">{{ tag }}</v-chip>
+          <v-chip v-for="tag in question.tags" :key="tag">
+            {{ tag }}
+          </v-chip>
         </v-chip-group>
       </v-card-text>
 

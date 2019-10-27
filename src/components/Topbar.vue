@@ -17,7 +17,7 @@
       </template>
       <v-toolbar-title class="display-2">revue</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon href="https://github.com/williamvwang/revue" target="_blank">
         <v-icon>fab fa-github</v-icon>
       </v-btn>
     </v-app-bar>
