@@ -81,6 +81,7 @@ export default class QuestionDetails extends Vue {
     color: #f8f8f2 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
+    font-weight: 400 !important;
   }
 
   .v-application code:before, .v-application code:after {

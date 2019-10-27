@@ -2,7 +2,7 @@
   <v-content>
     <v-container class="mt-12">
       <v-row>
-        <v-col cols="3">
+        <v-col cols="12" md="3">
           <v-card class="mx-auto mb-6" tile>
             <v-card-title class="pb-0">Filter</v-card-title>
             <v-card-actions class="pa-4">
@@ -35,7 +35,7 @@
             </v-list>
           </v-card>
         </v-col>
-        <v-col cols="9">
+        <v-col cols="12" md="9">
           <QuestionDetail v-bind:question="question"/>
         </v-col>
       </v-row>
