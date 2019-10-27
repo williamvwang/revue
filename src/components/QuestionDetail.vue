@@ -43,7 +43,9 @@ import { Question } from '../models/Question';
 
 @Component({
   props: {
-    question: Question,
+    question: {
+      type: Object as () => Question,
+    },
   },
 })
 export default class QuestionDetails extends Vue {

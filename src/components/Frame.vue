@@ -48,12 +48,10 @@ import {
   Component, Prop, Vue, Watch,
 } from 'vue-property-decorator';
 import { Question } from '../models/Question';
-import QuestionList from './QuestionList.vue';
 import QuestionDetail from './QuestionDetail.vue';
 
 @Component({
   components: {
-    QuestionList,
     QuestionDetail,
   },
 })
