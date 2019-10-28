@@ -1,0 +1,53 @@
+
+title: In-order Traversal
+tags:
+- easy
+- bst
+- recursion
+description: >-
+  Given a binary tree, return the inorder traversal of its nodes' values.
+example: |
+  Input: [1,null,2,3]
+    1
+     \
+      2
+     /
+    3
+  Output: [1,3,2]
+explanation: |
+  One of the simplest examples of recursion on a binary tree. For in-order traversal, think *Left-Root-Right*.
+
+  Intuitively, I think of it as traversing as far left on the tree as possible, then incrementally popping back up the stack to 
+  visit each most recent root and repeating this process on the right subtree of that root.
+
+  In-order traversal of a BST retrieves data **in** sorted **order** precisely because the binary search property specifies that 
+  each node must be greater than or equal to any node in its left subtree, and less than or equal to any node in its right subtree.
+
+  **Formally:**
+  1. Check if root is null
+  2. Traverse the left subtree recursively
+  3. Visit the root (could be printing or storing the value)
+  4. Traverse the right subtree recursively
+solution: |
+  ```python
+  # Definition for a binary tree node.
+  # class TreeNode:
+  #     def __init__(self, x):
+  #         self.val = x
+  #         self.left = None
+  #         self.right = None
+
+  class Solution:
+      def inorderTraversal(self, root: TreeNode) -> List[int]:
+          result = []
+          self.inorderHelper(root, result)
+          return result
+      
+      def inorderHelper(self, root: TreeNode, accumulator: List[int]):
+          if root:
+              if root.left:
+                  self.inorderHelper(root.left, accumulator)
+              accumulator.append(root.val)
+              if root.right:
+                  self.inorderHelper(root.right, accumulator)
+  ```
