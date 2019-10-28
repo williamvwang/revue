@@ -14,7 +14,9 @@
       </v-card-text>
 
       <v-card-subtitle class="pb-1">Description</v-card-subtitle>
-      <v-card-text class="text--primary">{{ question.description }}</v-card-text>
+      <v-card-text class="text--primary pb-0">
+        <div v-if="question.description" v-html="renderMarkdown(question.description)"/>
+      </v-card-text>
 
       <v-card-subtitle class="pb-1">Example</v-card-subtitle>
       <v-card-text class="text--primary">
@@ -23,7 +25,7 @@
 
       <v-card-subtitle class="pb-1">Explanation</v-card-subtitle>
       <v-card-text class="text--primary pb-0">
-        <div v-if="question.solution" v-html="renderMarkdown(question.explanation)"/>
+        <div v-if="question.explanation" v-html="renderMarkdown(question.explanation)"/>
       </v-card-text>
 
       <v-card-subtitle class="pb-1">Solution</v-card-subtitle>
