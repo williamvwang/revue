@@ -1,0 +1,34 @@
+
+title: Bitonic Array Maximum
+tags:
+- easy
+- array
+- binary search
+description: >-
+  Given an array of integers which is initially monotonically increasing and then monotonically decreasing, find the maximum element. 
+example: |
+  Input: [1, 2, 6, 10, 13, 8, 3]
+
+  Output: 13
+explanation: |
+  This is a variation upon binary search in which we can alter our search condition to search not for a particular predetermined target element, 
+  but to look for hints on how to shrink our search space.
+
+  In this case, the inflection point of the array (also the maximum) is the first point at which an array element is greater than the one that 
+  follows it. Therefore, if we find a search midpoint such that this property holds true, i.e. `arr[middle] > arr[middle + 1]`, then our new search 
+  space must be bounded on the right by `middle`, since any element past it must be less than it and therefore cannot be the maximum. Conversely, 
+  if this property does not hold true for the midpoint, i.e. `arr[middle] < arr[middle + 1]`, then our new search space must be bounded on the left 
+  by `middle + 1` -- the maximum cannot lie at `middle` or any point to the left of it because `middle + 1` is greater.
+solution: |
+  ```python
+  class Solution:
+      def bitonicMaximum(self, arr: List[int]) -> int:
+          left, right = 0, len(arr) - 1
+          while left < right:
+              middle = (left + right) // 2
+              if arr[middle] > arr[middle + 1]:
+                  right = middle
+              else:
+                  left = middle + 1
+          return arr[left]
+  ```
