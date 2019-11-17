@@ -19,7 +19,12 @@
             </v-card-actions>
           </v-card>
           <v-card class="mx-auto" tile>
-            <v-list flat two-line>
+            <v-list
+              flat
+              two-line
+              class="overflow-y-auto"
+              style="max-height: 50vh;"
+            >
               <v-list-item-group v-model="question" color="primary">
                 <v-list-item v-for="(question, i) in filteredQuestions" :key="i" :value="question">
                   <v-list-item-content>
