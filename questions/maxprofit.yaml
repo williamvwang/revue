@@ -17,7 +17,7 @@ example: |
   Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
   Not 7-1 = 6, as selling price needs to be larger than buying price.
 explanation: |
-  A the brute-force strategy would involve finding the max value of `prices[j] - prices[i]` for every `i, j` such that `j > i`.
+  A brute-force strategy would involve finding the max value of `prices[j] - prices[i]` for every `i, j` such that `j > i`.
 
   We can avoid a quadratic brute-force solution by employing a greedy strategy that has the same effect using one pass. The intuition here is to 
   keep track of the the minimum price seen so far in the traversal. This minimum price when subtracted from the current element yields the maximum 
